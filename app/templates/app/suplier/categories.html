@@ -1,0 +1,107 @@
+{% extends "app/suplier/base.html" %}
+{% block content %}
+
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Category</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="index.html">Category</a></li>
+                            <li class="breadcrumb-item active">SubCategories</li>
+                        </ol>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Categories
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>Category</th>
+                                            <th>SubCategories</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>Category</th>
+                                            <th>SubCategories</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </tfoot>
+                                    {% if key1 %}
+                                    
+                                    <tbody>
+                                        {% for i in key1 %}
+                                        
+                                        <tr>
+                                        <td>{{i.id}}</td>
+                                        <td>{{i.cat_name}}</td>
+                                         
+                                    
+                                        </tr>
+                                        <tr>   
+                                          <td> 
+                                              {% if key2 %}
+                                                {% for i in key2 %}
+                                                <tr>
+                                                  <option value="{{i.id}}">{{i.Type}}</option>
+                                                </tr>
+                                                
+  
+                                          
+                                              {% endfor %} 
+                                            {% endif %}
+                                          </td>
+                                          </tr> 
+                                         
+                                              <td>
+                                              
+                                                <form action="{% url 'editpage' pk=i.id %}" method="post">
+                                                  {% csrf_token %}
+                                                  <input type="hidden" name="id" id="" value="{{i.id}}">
+                                                  <input type="submit" value="Edit">
+                                                </form>
+                                            
+                                                </td>  
+                                                <td>
+                                                  <form action="{% url 'delete' pk=i.id %}" method="post">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="id" value="{{i.id}}">
+                                                    <input type="submit" value="Delete">
+                                                  </form>
+                                            
+                                                </td>
+                                        </tr>
+                                        
+                                        
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                        
+                    </div>
+                    {% endif %}
+                    
+{% endblock %}

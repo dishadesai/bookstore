@@ -1,0 +1,74 @@
+{% extends "app/base1.html" %}
+{% block content %}
+
+<form action="{% url 'profileupdatecust' pk=request.session.id  %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if key1 %}
+    <div class="login-form">
+        <h4 class="login-title">CUSTOMER PROFILE</h4>
+        <p><span class="font-weight-bold">Update Profile Details</span></p>
+        <div class="row">
+            <div class="col-md-12 col-12 mb--15">
+                <label for="email">First Name</label>
+                <input class="mb-0 form-control" type="text" id="name" name="fname" value="{{key1.Firstname}}"
+                    >
+            </div>
+            <div class="col-md-12 col-12 mb--15">
+                <label for="email">Lastname</label> 
+                <input class="mb-0 form-control" type="text" id="name" name="lname"value="{{key1.Lastname}}">
+            </div>
+            <div class="col-md-12 col-12 mb--15">
+                <label for="email">City</label> 
+                <input class="mb-0 form-control" type="text" id="name" name="city"value="{{key1.City}}">
+            </div>
+            <div class="col-md-12 col-12 mb--15">
+                <label for="email">State</label> 
+                <input class="mb-0 form-control" type="text" id="name" name="state" value="{{key1.State}}">
+            </div>
+            <div class="col-md-12 col-12 mb--15">
+                <label for="email">Address</label>
+                <input class="mb-0 form-control" type="text" id="name" name="address" value="{{key1.Address}}"
+                    placeholder="Enter your last name">
+            </div>
+            <div class="col-12 mb--20">
+                <label for="email">Gender</label>
+                <select name="gender" id="">
+                    <option>---select gender---</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Others</option>
+                </select>
+                    
+            </div>
+            <div class="col-12 mb--20">
+                <label for="email">Contact</label>
+                <input class="mb-0 form-control" type="tel" id="email"  name="contact" value="{{key1.Contact}}">
+            </div>
+            <div class="col-lg-6 mb--20">
+                <label for="password">DOB</label>
+                <input class="mb-0 form-control" type="date" id="password"  name="dob">
+            </div>
+            <div class="col-lg-6 mb--20">
+                <label for="password">Email</label>
+                <input class="mb-0 form-control" type="email" id=""  name="email" required value="{{request.session.email}}">
+            </div>
+            <div class="col-lg-6 mb--20">
+                <label for="password">Password</label>
+                <input class="mb-0 form-control" type="password" id="" placeholder="your password" name="psw">
+            </div>
+            <img src="{{MEDIA_URL}}{{key1.profile_pic.url}}" alt="" srcset="" height="150px" width="150px">
+            <div class="col-lg-6 mb--20">
+                <label for="password">Profile Pic</label>
+                <input class="mb-0 form-control" type="file" id="" placeholder="" name="profilepic">
+            </div>
+            
+            <div class="col-md-12">
+                <input type="submit" value="Update" class="btn btn-primary btn-block">
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+{% endif %}
+
+{% endblock %}
